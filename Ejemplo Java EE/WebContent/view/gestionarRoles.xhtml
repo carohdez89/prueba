@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<style>
+div.container {
+	width: 99%;
+	padding: 0em;
+	border: 0px solid gray;
+}
+
+header, footer {
+	padding: 1em;
+	color: white;
+	background-color: black;
+	clear: left;
+	text-align: center;
+}
+
+nav {
+	float: left;
+	margin: 0;
+	padding: 1em;
+}
+
+article {
+	margin-left: 170px;
+	border-left: 0px solid gray;
+	padding: 1em;
+	overflow: hidden;
+}
+</style>
+</h:head>
+<h:body>
+	<div class="container">
+		<header> <ui:include src="/view/menus/header.xhtml" /> </header>
+		<nav> <ui:include src="/view/menus/menus.xhtml" /> </nav>
+
+		<article> 
+
+	<h:form id="form">
+		<p:growl id="msgs" />
+		<div align="center">
+			<h:panelGrid columns="1">
+				<p:panel header="Crear roles" style="margin-bottom:20px">
+
+					<h:panelGrid columns="2" cellpadding="5">
+
+						<h:outputLabel value="Codigo :" for="txt_codigo"></h:outputLabel>
+						<p:inputText id="txt_codigo"
+							value="#{gestionarUsuarios.rol.codigo}"
+							required="true" />
+
+						<h:outputLabel value="Nombre :" for="txt_nombre"></h:outputLabel>
+						<p:inputText id="txt_nombre"
+							value="#{gestionarUsuarios.rol.nombre}"
+							required="true" />
+
+						<h:outputLabel value="Descripcion :" for="txt_descripcion"></h:outputLabel>
+						<p:inputText id="txt_descripcion"
+							value="#{gestionarUsuarios.rol.descripcion}"
+							required="true" />
+
+
+					</h:panelGrid>
+					<div align="center">
+						<h:panelGrid columns="2">
+							<p:commandButton id="btn_reset" value="Limpiar" type="reset" />
+							<p:commandButton id="btn_add" value="Agregar" update="form"
+								action="#{gestionarUsuarios.crearRol()}">
+
+							</p:commandButton>
+						</h:panelGrid>
+					</div>
+				</p:panel>
+			</h:panelGrid>
+		</div>
+
+		<p:outputPanel id="roles">
+			<p:dataTable value="#{gestionarUsuarios.roles}"
+				var="rol" id="rolesTable" >
+
+				<p:column headerText="Codigo" width="10%" >
+					<h:outputText value="#{rol.codigo}" />
+				</p:column>
+
+				<p:column headerText="Nombre" width="20%">
+					<f:facet name="header">
+						<h:outputText value="Nombre" />
+					</f:facet>
+					<h:outputText value="#{rol.nombre}" />
+				</p:column>
+
+				<p:column headerText="Descripcion" width="60%">
+					<f:facet name="header">
+						<h:outputText value="Descripcion" />
+					</f:facet>
+					<h:outputText value="#{rol.descripcion}" />
+				</p:column>
+
+				<p:column headerText="Accion" width="10%">
+					<p:commandLink value="Eliminar" update=":form:roles"
+						process=":form:roles"
+						action="#{gestionarUsuarios.eliminarRol(rol)}">
+						<p:confirm header="Confirmacion" message="Esta Seguro?"
+							icon="ui-icon-alert" />
+					</p:commandLink>
+				</p:column>
+
+			</p:dataTable>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Si" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</p:outputPanel>
+	</h:form>
+</article>
+
+		<footer>Semillero Desarrollo Web</footer>
+
+	</div>
+
+</h:body>
+</html>
+

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14757131601830" configfile="/Ejemplo Java EE/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="view/menus/menus.xhtml" x="250" y="176" id="pf14757152882971" outlinks="pf14757152882972 pf14757152882973" path="/view/menus/menus.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="view/gestionarRoles.xhtml" x="540" y="72" id="pf14757152882984" inlinks="pf14757152882972" path="/view/gestionarRoles.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="view/gestionarUsuarios.xhtml" x="678" y="156" id="pf14757152882985" inlinks="pf14757152882973" path="/view/gestionarUsuarios.xhtml"/>
+  <links id="pf14757152882972" target="pf14757152882984" source="pf14757152882971" fromaction="gestionarRoles"/>
+  <links id="pf14757152882973" target="pf14757152882985" source="pf14757152882971" fromaction="gestionrUsuarios"/>
+</pageflow:Pageflow>
